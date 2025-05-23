@@ -2,6 +2,10 @@
 ##### Project-5: Automate Kria Ubuntu SD Card Image with Docker #####
 ###
 
+# run this first to enable QEMU emulation for arm64
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
+
 # add a custom kernel image
 cp /path/to/Image boot
 
