@@ -36,6 +36,18 @@ sudo usermod -aG docker $USER
 newgrp docker
 ```
 
+Register QEMU to enable ARM64 emulation.
+
+```bash
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+```
+
+Set up a Docker builder that supports ARM64:
+
+```bash
+docker buildx create --name kria-builder --use
+```
+
 ## Directory Structure
 
 ```plaintext
@@ -50,7 +62,6 @@ kria-build-system/
 ├── output/
 │   └── custom-linux-image.wic.zip
 ├── README.md
-├── Readme.txt
 ├── rootfs/
 ├── run.sh
 ├── scripts/
@@ -81,7 +92,7 @@ cd kria-build-system
 ### 2. Build the Docker Image
 
 ```bash
-./run.sh
+./build.sh
 ```
 
 ### 3. Run the Docker Container
