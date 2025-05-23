@@ -115,6 +115,14 @@ The final image will be located at `output/custom-linux-image.wic.zip`.
 - To add additional packages, edit `scripts/additional-packages.sh`.
 - For post-install configurations (e.g., setting up users, SSH, networking), modify `scripts/post-config.sh`.
 
+## Troubleshooting
+
+In case your build fails due to Segmentation Faults, try this command and rebuild again.
+
+```bash
+docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+```
+
 ## License
 
 This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
