@@ -4,6 +4,8 @@ docker run --rm -it --platform linux/arm64 \
   -v $(pwd)/workspace:/root/workspace \
   -v $(pwd)/scripts:/root/scripts \
   -v $(pwd)/boot:/root/boot \
+  -v $(pwd)/modules:/root/modules \
+  -v $(pwd)/deb-pkgs:/root/deb-pkgs \
   -v $(pwd)/output:/root/output \
   -v $(pwd)/rootfs:/mnt/rootfs \
   ubuntu-auto:kria

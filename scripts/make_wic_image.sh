@@ -5,12 +5,18 @@ set -e
 BOOT_DIR=/root/boot
 ROOTFS_DIR=/mnt/rootfs
 IMAGE_NAME=output/custom-linux-image.wic
+
 WORK_DIR=wic-tmp
-BOOT_SIZE_MB=128
-ROOTFS_SIZE_MB=4096
+
+BOOT_SIZE_MB=1024
+ROOTFS_SIZE_MB=13312
+
+BOOT_LABEL=system-boot
+ROOTFS_LABEL=writable
+
 
 # Clean previous build
-rm -rf "$WORK_DIR" "$IMAGE_NAME"
+rm -rf "$WORK_DIR" "$IMAGE_NAME" "$IMAGE_NAME".zip
 mkdir -p "$WORK_DIR"
 
 echo "[1/6] Creating empty image file..."
@@ -28,21 +34,29 @@ LOOPDEV=$(losetup --show -f -P "$IMAGE_NAME")
 echo "Using loop device: $LOOPDEV"
 
 echo "[3/6] Creating filesystems..."
-mkfs.vfat "${LOOPDEV}p1"
-mkfs.ext4 "${LOOPDEV}p2"
+
+mkfs.vfat -n ${BOOT_LABEL} "${LOOPDEV}p1"
+mkfs.ext4 -L ${ROOTFS_LABEL} "${LOOPDEV}p2"
 
 echo "[4/6] Copying files to image..."
 
 mkdir -p "$WORK_DIR/boot" "$WORK_DIR/rootfs"
+
 mount "${LOOPDEV}p1" "$WORK_DIR/boot"
 mount "${LOOPDEV}p2" "$WORK_DIR/rootfs"
 
-cp -rv ${BOOT_DIR}/* "$WORK_DIR/boot/"
-cp -a ${ROOTFS_DIR}/* "$WORK_DIR/rootfs/"
+#cp -r --no-preserve=mode,ownership,timestamps "${BOOT_DIR}/." "$WORK_DIR/boot/"
+rsync -rltD --no-owner --no-group --no-perms "${BOOT_DIR}/" "$WORK_DIR/boot/"
+
+rsync -aAXHS --numeric-ids "${ROOTFS_DIR}/" "$WORK_DIR/rootfs/"
 
 sync
-umount "$WORK_DIR/boot"
-umount "$WORK_DIR/rootfs"
+
+umount "$WORK_DIR/boot" "$WORK_DIR/rootfs"
+
+echo "[5/6] Getting PARTUUIDs..."
+blkid "${LOOPDEV}p1" "${LOOPDEV}p2"
+
 losetup -d "$LOOPDEV"
 
 # Clean build dir

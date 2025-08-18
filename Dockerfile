@@ -22,6 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     udev \
     dosfstools \
     zip \
+    kmod \
+    rsync \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 

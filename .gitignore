@@ -100,3 +100,8 @@ x509.genkey
 output
 workspace
 rootfs
+old
+what-works
+what-not
+*.txt
+
