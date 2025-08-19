@@ -13,6 +13,7 @@ chroot "$ROOTFS_DIR" /bin/bash -c "
     apt update --yes 
 
     apt install -y tree \
+                   vim \
                    git \
                    curl \
                    gnupg \
