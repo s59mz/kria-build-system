@@ -8,12 +8,6 @@ chroot "$ROOTFS_DIR" /bin/bash -c "
     export DEBIAN_FRONTEND=noninteractive
     apt update
 
-    add-apt-repository ppa:xilinx-apps --yes
-    add-apt-repository ppa:ubuntu-xilinx/sdk --yes 
-    add-apt-repository ppa:xilinx-apps/xilinx-drivers --yes
-    add-apt-repository ppa:lely/ppa --yes 
-    apt update 
-
     apt install -y tree \
                    vim \
                    git \
@@ -25,15 +19,6 @@ chroot "$ROOTFS_DIR" /bin/bash -c "
                    u-boot-tools \
                    uidmap \
                    libdrm-tests \
-                   v4l-utils \
-                   xrt \
-                   linux-firmware-xilinx-vcu \
-                   libxilinx-vcu0 \
-                   libxilinx-vcu-dev \
-                   xilinx-vcu-ctrl \
-                   xilinx-vcu-omx-utils \
-                   xlnx-default-bitstreams 
-
-    apt upgrade --yes
+                   v4l-utils 
 "
 echo "[INFO ] Additional Packages Installed"

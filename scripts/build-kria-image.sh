@@ -60,8 +60,8 @@ chroot "$ROOTFS_DIR" /bin/bash -c "
 # === STEP 6: INSTALL ADDITIONAL PACKAGES ===
 echo "[STEP 6] Installing additional packages in chroot..."
 bash "$PACKAGES_SCRIPT"
-bash "$DEB_FILES_SCRIPT"
 bash "$DOCKER_SCRIPT"
+bash "$DEB_FILES_SCRIPT"
 
 # === STEP 7: POST CONFIGURATION ===
 echo "[STEP 7] Post configuring..."

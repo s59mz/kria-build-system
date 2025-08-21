@@ -8,8 +8,8 @@ IMAGE_NAME=output/custom-linux-image.wic
 
 WORK_DIR=wic-tmp
 
-BOOT_SIZE_MB=1024
-ROOTFS_SIZE_MB=13312
+BOOT_SIZE_MB=512
+ROOTFS_SIZE_MB=3072
 
 BOOT_LABEL=system-boot
 ROOTFS_LABEL=writable
