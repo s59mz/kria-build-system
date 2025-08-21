@@ -21,12 +21,10 @@ chroot "$ROOTFS_DIR" /bin/bash -c "
     apt upgrade --yes
 
     apt install -y \
-                xrt \
                 linux-firmware-xilinx-vcu \
                 libxilinx-vcu0 \
                 libxilinx-vcu-dev \
                 xilinx-vcu-ctrl \
-                xilinx-vcu-omx-utils \
                 xlnx-default-bitstreams
 
     apt install -y /tmp/deb-pkgs/xlnx-platformstats_1.1_arm64.deb 
