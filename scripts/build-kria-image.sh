@@ -10,6 +10,7 @@ MOUNT_SCRIPT="/root/scripts/mount-chroot-ro.sh"
 UMOUNT_SCRIPT="/root/scripts/umount-chroot-ro.sh"
 PACKAGES_SCRIPT="/root/scripts/additional-packages.sh"
 DEB_FILES_SCRIPT="/root/scripts/xil-deb-packages.sh"
+DOCKER_SCRIPT="/root/scripts/install-docker.sh"
 MODULES_SCRIPT="/root/scripts/install-modules.sh"
 POST_SCRIPT="/root/scripts/post-config.sh"
 
@@ -60,6 +61,7 @@ chroot "$ROOTFS_DIR" /bin/bash -c "
 echo "[STEP 6] Installing additional packages in chroot..."
 bash "$PACKAGES_SCRIPT"
 bash "$DEB_FILES_SCRIPT"
+bash "$DOCKER_SCRIPT"
 
 # === STEP 7: POST CONFIGURATION ===
 echo "[STEP 7] Post configuring..."
