@@ -11,6 +11,7 @@ chroot "$ROOTFS_DIR" /bin/bash -c "
     apt install -y tree \
                    vim \
                    git \
+                   unzip \
                    curl \
                    gnupg \
                    arptables \
