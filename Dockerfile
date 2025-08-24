@@ -22,10 +22,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     parted \
     udev \
     dosfstools \
-    zip \
+    zip unzip \
     kmod \
     rsync \
     ca-certificates \
+    git \
+    build-essential \
+    dkms \
     && rm -rf /var/lib/apt/lists/*
 
 # Set locale
