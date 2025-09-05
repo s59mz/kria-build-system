@@ -13,6 +13,7 @@ chroot "$ROOTFS_DIR" /bin/bash -c "
                    git \
                    unzip \
                    curl \
+                   mosh \
                    gnupg \
                    arptables \
                    ebtables \
